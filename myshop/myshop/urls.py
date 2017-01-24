@@ -14,18 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from shop import urls as shop_urls
 from cart import urls as cart_urls
 from orders import urls as orders_urls
-from django.conf import settings
-from django.conf.urls.static import static
+from payment import urls as payment_urls
+from coupons import urls as coupons_urls
+
 from paypal.standard.ipn import urls as paypal_urls
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cart/', include(cart_urls, namespace='cart')),
     url(r'^orders/', include(orders_urls, namespace='orders')),
-    url(r'paypal/', include(paypal_urls)),
+    url(r'^paypal/', include(paypal_urls)),
+    url(r'^payment/', include(payment_urls, namespace='payment')),
+    url(r'^coupons/', include(coupons_urls, namespace='coupons')),
     url(r'^', include(shop_urls, namespace='shop')),
 ]
 

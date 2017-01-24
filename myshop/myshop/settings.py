@@ -25,7 +25,7 @@ SECRET_KEY = 'fe6cssfxx5$qkv+#jj(2a7*wus0o5u8+0c&!ff4buy)pt*&4@&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cf31abc0.ngrok.io', 'localhost']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'orders',
     'paypal.standard.ipn',
     'payment',
+    'coupons',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -137,5 +139,5 @@ EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
 # django-paypal settings
-PAYPAL_RECEIVER_EMAIL = edmilsonmgsantana@gmail.com
+PAYPAL_RECEIVER_EMAIL= 'edmilsonmgsantana@gmail.com'
 PAYPAL_TEST = True
