@@ -43,11 +43,15 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'payment',
     'coupons',
+    'rosetta',
+    'parler',
+    'localflavor',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,11 +110,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pt-br', _('Portuguese')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 TIME_ZONE = 'UTC'
 
@@ -139,5 +153,20 @@ EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
 # django-paypal settings
-PAYPAL_RECEIVER_EMAIL= 'edmilsonmgsantana@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'edmilsonmgsantana@gmail.com'
 PAYPAL_TEST = True
+
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en',},
+        {'code': 'pt-br',},
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
+
+REDIS_HOST = '192.168.99.100'
+REDIS_PORT = 6379
+REDIS_DB = 1

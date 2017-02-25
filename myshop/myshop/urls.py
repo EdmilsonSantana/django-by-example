@@ -22,18 +22,21 @@ from cart import urls as cart_urls
 from orders import urls as orders_urls
 from payment import urls as payment_urls
 from coupons import urls as coupons_urls
-
+from rosetta import urls as rosetta_urls
 from paypal.standard.ipn import urls as paypal_urls
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
-    url(r'^cart/', include(cart_urls, namespace='cart')),
-    url(r'^orders/', include(orders_urls, namespace='orders')),
+    url(_(r'^cart/'), include(cart_urls, namespace='cart')),
+    url(_(r'^orders/'), include(orders_urls, namespace='orders')),
     url(r'^paypal/', include(paypal_urls)),
-    url(r'^payment/', include(payment_urls, namespace='payment')),
-    url(r'^coupons/', include(coupons_urls, namespace='coupons')),
+    url(_(r'^payment/'), include(payment_urls, namespace='payment')),
+    url(_(r'^coupons/'), include(coupons_urls, namespace='coupons')),
+    url(r'^rosetta', include(rosetta_urls)),
     url(r'^', include(shop_urls, namespace='shop')),
-]
+)
 
 if settings.DEBUG:
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
