@@ -2,5 +2,7 @@ educa:
   build: .
   ports:
     - "8081:8081"
-  volumes:
-    - app:/app
+  links:
+    - memcached
+memcached:
+  image: memcached:1.4.34

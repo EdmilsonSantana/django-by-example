@@ -118,7 +118,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211'
+        'LOCATION': 'memcached:11211'
     }
 }
 
